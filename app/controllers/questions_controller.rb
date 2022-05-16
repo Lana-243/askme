@@ -1,12 +1,10 @@
 class QuestionsController < ApplicationController
-  #do not add it ti an actual controller
-  skip_before_action :verify_authenticity_token
-
   def create
-    Question.create(
+    question = Question.create(
       body: params[:question][:body],
       user_id: params[:question][:user_id]
     )
+    redirect_to question_path(question)
   end
 
   def update
@@ -15,7 +13,9 @@ class QuestionsController < ApplicationController
       body: params[:question][:body],
       user_id: params[:question][:user_id]
     )
-    end
+
+    redirect_to question_path(@question)
+  end
 
   def destroy
     @question = Question.find(params[:id])
@@ -28,5 +28,13 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+  end
+
+  def new
+    @question = Question.new
+  end
+
+  def edit
+    @question = Question.find(params[:id])
   end
 end
