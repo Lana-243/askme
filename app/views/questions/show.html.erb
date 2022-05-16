@@ -1,7 +1,13 @@
-<h1>Hello world!</h1>
-<p><%= @question.body %></p>
-<p>user_id:<%= @question.user_id %></p>
+<div class="container">
+  <h1 class="title-lg mb">Question<% @question.id %></h1>
 
-<p><%= link_to "Change question", edit_question_path(@question) %></p>
+  <p class="mb-sm"><%= @question.body %></p>
+  <p>user_id:<%= @question.user_id %></p>
 
-<p><%= link_to "All questions", questions_path %></p>
+  <div class="mt">
+    <%= link_to fa_icon('pencil'), edit_question_path(@question), title: 'Change question' %>
+    <%= button_to fa_icon('trash-o'), question_path(@question), method: :delete, title: 'Delete question' %>
+  </div>
+
+  <p class="mt"><%= link_to "All questions", questions_path %></p>
+</div>
