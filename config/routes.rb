@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   # patch '/questions/:id', to: 'questions#update'
   # delete '/questions/:id', to: 'questions#destroy'
   root to: 'questions#index'
+
   resources :questions
+  resources :users, only: %i[new create]
 end

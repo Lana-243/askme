@@ -33,7 +33,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-
   end
 
   private
