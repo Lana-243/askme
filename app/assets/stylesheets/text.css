@@ -34,3 +34,7 @@ a button {
 .text-bold {
   font-weight: bold;
 }
+
+.text-pale {
+  color: rgba(0,0,0,0.5)
+}
