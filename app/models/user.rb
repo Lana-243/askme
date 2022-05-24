@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true,
             format: { with: /\A[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
+  has_many :questions, dependent: :delete_all
+
   def downcase_nickname
     nickname.downcase!
   end

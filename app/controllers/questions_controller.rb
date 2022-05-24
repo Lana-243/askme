@@ -2,14 +2,15 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[update show destroy edit hide]
 
   def new
-    @question = Question.new
+    @user = User.find(params[:user_id])
+    @question = Question.new(user: @user)
   end
 
   def create
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to question_path(@question), notice: "New question has been created!"
+      redirect_to user_path(@question.user), notice: "New question has been created!"
     else
       flash.now[:alert] = "You have incorrectly filled in the form"
 
@@ -20,13 +21,14 @@ class QuestionsController < ApplicationController
   def update
     @question.update(question_params)
 
-    redirect_to question_path(@question), notice: "Question has been saved"
+    redirect_to user_path(@question.user), notice: "Question has been saved"
   end
 
   def destroy
+    @user = @question.user
     @question.destroy
 
-    redirect_to questions_path, notice: "Question has been deleted"
+    redirect_to user_path(@user), notice: "Question has been deleted"
   end
 
   def show
