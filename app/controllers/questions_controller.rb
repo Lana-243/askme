@@ -1,10 +1,20 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[update show destroy edit hide hidden?]
+  before_action :set_question, only: %i[update show destroy edit hide]
+
+  def new
+    @question = Question.new
+  end
 
   def create
-    question = Question.create(question_params)
+    @question = Question.new(question_params)
 
-    redirect_to question_path(question), notice: "New question has been created!"
+    if @question.save
+      redirect_to question_path(@question), notice: "New question has been created!"
+    else
+      flash.now[:alert] = "You have incorrectly filled in the form"
+
+      render :new
+    end
   end
 
   def update
@@ -26,10 +36,6 @@ class QuestionsController < ApplicationController
   def index
     @question = Question.new
     @questions = Question.all
-  end
-
-  def new
-    @question = Question.new
   end
 
   def edit
