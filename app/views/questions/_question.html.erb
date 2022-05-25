@@ -3,21 +3,29 @@
   <%= question.body %>
 <% end %>
 
+<% if question.answer.present? %>
+  <div class="mb-sm text-dark-red">
+    <%= question.answer %>
+  </div>
+<% end %>
+
 <div class="text-sm question-footer">
   <div class="text-gray">
     <%= l(question.created_at, format: :short) %>
   </div>
-
-  <div>
-    <%= link_to fa_icon('pencil'), edit_question_path(question),
-                title: 'Change question' %>
-    <% unless question.hidden? %>
-      <%= button_to fa_icon('eye-slash'), hide_question_path(question),
-                  method: :put,
-                  title: 'Hide question' %>
-    <% end %>
-    <%= button_to fa_icon('trash-o'), question_path(question),
-                  method: :delete, title: 'Delete question',
-                  form: {data: {turbo_confirm: 'Are you sure you want do delete the question?'}}  %>
-  </div>
+  <% if current_user == question.user %>
+    <div>
+      <% edit_icon = (question.answer.present? ? 'pencil' : 'reply') %>
+      <%= link_to fa_icon(edit_icon), edit_question_path(question),
+                  title: 'Change question', class: 'mr-sm' %>
+      <% unless question.hidden? %>
+        <%= button_to fa_icon('eye-slash'), hide_question_path(question),
+                    method: :put,
+                    title: 'Hide question' %>
+      <% end %>
+      <%= button_to fa_icon('trash-o'), question_path(question),
+                    method: :delete, title: 'Delete question',
+                    form: {data: {turbo_confirm: 'Are you sure you want do delete the question?'}}  %>
+    </div>
+  <% end %>
 </div>
