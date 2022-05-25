@@ -10,6 +10,12 @@
   <% end %>
 
   <div class="mt">
+    <p><%= image_tag @user.gravatar_url, title: "@#{@user.nickname}", class: 'rounded' %></p>
+    <p class="text-sm">To change and update your avatar please register at:
+      <%= link_to "Gravatar", 'https://gravatar.com' %> and upload your photo</p>
+  </div>
+
+  <div class="mt">
     <%= form_with model: @user, data: {turbo: false} do |form| %>
       <p><%= form.label :name, 'Name' %></p>
       <p><%= form.text_field :name, class: 'form-text-field' %></p>

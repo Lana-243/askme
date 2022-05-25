@@ -40,8 +40,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @question = Question.new
-    @questions = Question.all
+    @questions = Question.order(created_at: :desc).last(10)
+    @users = User.order(created_at: :desc).last(10)
   end
 
   def edit
@@ -57,7 +57,7 @@ class QuestionsController < ApplicationController
   def ensure_current_user
     redirect_with_alert unless current_user.present?
   end
-  
+
   def set_question_for_current_user
     @question = current_user.questions.find(params[:id])
   end
