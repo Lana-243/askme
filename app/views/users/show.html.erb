@@ -12,26 +12,29 @@
   <% end %>
 </div>
 
+<% if @questions.any? %>
+  <div class="container">
+    <%= link_to "Ask me", new_question_path(user_id: @user.id),
+      class: "button button-yellow" %>
 
-<div class="container">
-  <%= link_to "Ask me", new_question_path(user_id: @user.id),
-    class: "button button-yellow" %>
-
-  <p class="mt">
-    <%= render'questions/form', question: @question %>
-  </p>
-</div>
-
-<div class="container mt-sm">
-  <h2 class="title-lg mb">
-    <% @questions.count %>
-    <%= inclination(@questions.count, "Question", "Questions") %>
-  </h2>
-</div>
-
-<% @questions.each do |question| %>
-  <div class="mt-sm container" >
-    <%= render question %>
+    <p class="mt">
+      <%= render'questions/form', question: @question %>
+    </p>
   </div>
+
+  <div class="container mt-sm">
+    <h2 class="title-lg mb">
+      <% @questions.count %>
+      <%= inclination(@questions.count, "Question", "Questions") %>
+    </h2>
+  </div>
+
+  <% @questions.each do |question| %>
+    <div class="mt-sm container" >
+      <%= render question %>
+    </div>
+  <% end %>
+<% else %>
+  <%= render partial: 'no_questions', locals: {user: @user} %>
 <% end %>
 
