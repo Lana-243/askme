@@ -1,11 +1,11 @@
 <% hidden_class = "text-pale" if question.hidden? %>
 <%= content_tag :p, class: ["mb-sm", hidden_class] do %>
-  <%= question.body %>
+  <%= simple_format(question.body) %>
 <% end %>
 
 <% if question.answer.present? %>
   <div class="mb-sm text-dark-red">
-    <%= question.answer %>
+    <%= simple_format(question.answer) %>
   </div>
 <% end %>
 
