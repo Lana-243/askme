@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  before_save :downcase_nickname
+  before_validation :downcase_nickname
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true,
@@ -15,6 +15,6 @@ class User < ApplicationRecord
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
 
   def downcase_nickname
-    nickname.downcase!
+    nickname&.downcase!
   end
 end
