@@ -13,6 +13,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
+gem 'recaptcha', require: 'recaptcha/rails'
+
 
 group :production do
   gem 'pg'
