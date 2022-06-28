@@ -12,12 +12,12 @@
 
   <body>
     <div class="wrapper">
-      <div class="navbar">
+      <div class="navbar" style="background-color: <%= current_user&.header_color || '#370617' %>">
         <p class="title-sm text-bold"><%= link_to "Ask me!", root_path %></p>
         <div>
           <% if current_user.present? %>
             <%= link_to "@#{current_user.nickname}", user_path(current_user), class: "mr-sm" %>
-            <%= button_to "Sign out", session_path, data: {method: :delete} %>
+            <%= button_to "Sign out", session_path, method: :delete %>
           <% else %>
             <%= link_to "Registration", new_user_path, class: "button button-yellow mr-sm" %>
             <%= link_to "Sign in", new_session_path, class: "button button-yellow" %>
