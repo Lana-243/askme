@@ -13,6 +13,15 @@
   <div class="text-gray">
     <%= l(question.created_at, format: :short) %>
   </div>
+  <div class="text-gray">
+    <p class="mb text-sm text-grey">
+      <% if question.author.nil?  %>
+        <%= 'Question created by Anonymous' %>
+      <% else %>
+        <%= link_to "Question created by #{question.author.nickname}", user_path(question.author) %>
+      <% end %>
+    </p>
+  </div>
   <% if current_user == question.user %>
     <div>
       <% edit_icon = (question.answer.present? ? 'pencil' : 'reply') %>

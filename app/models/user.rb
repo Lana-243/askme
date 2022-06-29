@@ -4,7 +4,7 @@ class User < ApplicationRecord
   COLOR_FORMAT = /\A#\h{3}{1,2}\z/
 
 
-    before_validation :downcase_nickname
+  before_validation :downcase_nickname
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true,
@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :header_color, format: { with: COLOR_FORMAT }
 
   has_many :questions, dependent: :delete_all
+  has_many :created_questions, class_name: "Question", foreign_key: "author_id", dependent: :destroy
 
   include Gravtastic
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')

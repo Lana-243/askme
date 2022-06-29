@@ -11,7 +11,9 @@ class QuestionsController < ApplicationController
     question_params = params.require(:question).permit(:body, :user_id)
     @question = Question.new(question_params)
 
-    if check_captcha(@question) && @question.save
+    @question.author = current_user
+
+    if verify_recaptcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: "New question has been created!"
     else
       flash.now[:alert] = "You have incorrectly filled in the form"
