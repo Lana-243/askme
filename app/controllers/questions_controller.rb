@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
 
     @question.author = current_user
 
-    if verify_recaptcha(@question) && @question.save
+    if check_captcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: "New question has been created!"
     else
       flash.now[:alert] = "You have incorrectly filled in the form"
