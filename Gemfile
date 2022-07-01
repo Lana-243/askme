@@ -15,7 +15,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'friendly_id', '~> 5.4.0'
 
 group :production do
   gem 'pg'

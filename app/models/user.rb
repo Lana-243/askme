@@ -3,8 +3,6 @@ class User < ApplicationRecord
 
   COLOR_FORMAT = /\A#\h{3}{1,2}\z/
 
-  extend FriendlyId
-  friendly_id :nickname, use: :slugged
 
   before_validation :downcase_nickname
 
