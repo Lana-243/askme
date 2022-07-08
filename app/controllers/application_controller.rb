@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def redirect_with_alert
     redirect_to root_path, alert: "You can't go there!"
   end
+
+  def raise_404_error
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

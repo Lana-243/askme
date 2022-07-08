@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question_for_current_user, only: %i[update destroy edit hide]
 
   def new
-    @user = User.find(params[:user_id])
+    @user = User.find_by(nickname: params[:nickname])
     @question = Question.new(user: @user)
   end
 

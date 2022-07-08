@@ -43,8 +43,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @questions = @user.questions.order(created_at: :asc)
-    @question = Question.new(user: @user)
+    if @user.present?
+      @questions = @user.questions.order(created_at: :asc)
+      @question = Question.new(user: @user)
+    else
+      raise_404_error
+    end
   end
 
   private
