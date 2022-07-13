@@ -43,12 +43,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if @user.present?
-      @questions = @user.questions.order(created_at: :asc)
-      @question = Question.new(user: @user)
-    else
-      raise_404_error
-    end
+    @questions = @user.questions.order(created_at: :asc)
+    @question = Question.new(user: @user)
   end
 
   private
@@ -58,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(nickname: params[:nickname])
+    @user = User.find_by!(nickname: params[:nickname])
   end
 
   def user_params
