@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   def redirect_with_alert
     redirect_to root_path, alert: "You can't go there!"
   end
-
-  def raise_404_error
-    render file: 'public/404.html', layout: false, status: :not_found
-  end
 end
