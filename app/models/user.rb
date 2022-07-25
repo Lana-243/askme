@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include Gravtastic
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
 
+  NICKNAME_FORMAT = /\A[a-z_0-9]+\z/
+  EMAIL_FORMAT = /\A[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   COLOR_FORMAT = /\A#\h{3}{1,2}\z/
 
   has_many :questions, dependent: :delete_all
@@ -9,9 +11,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true,
-            length: { maximum: 40 }, format: { with: /\A[a-z_0-9]+\z/ }
+            length: { maximum: 40 }, format: { with: NICKNAME_FORMAT }
   validates :email, presence: true, uniqueness: true,
-            format: { with: /\A[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
+            format: { with: EMAIL_FORMAT }
   validates :header_color, format: { with: COLOR_FORMAT }
 
   before_validation :downcase_nickname
