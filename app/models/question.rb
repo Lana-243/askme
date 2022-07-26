@@ -12,12 +12,12 @@ class Question < ApplicationRecord
       get_question_hashtags.map { |hashtag| Hashtag.create_or_find_by(text: hashtag.delete('#')) }
   end
 
-  private
-
   def get_question_hashtags
     full_text = "#{body} #{answer}"
     has_hashtags(full_text.downcase).uniq
   end
+
+  private
 
   def has_hashtags(text)
     text.scan(/#[[:word:]-]+/)

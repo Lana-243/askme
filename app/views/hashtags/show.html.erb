@@ -1,0 +1,11 @@
+<div class="mt-sm container">
+  <h2 class="title-lg my">
+    Questions with hashtag: <%= content_tag :span, "##{@hashtag.text}", class: 'text-bold' %>
+  </h2>
+</div>
+
+<% @questions.each do |question| %>
+  <div class="mt-sm container">
+    <%= render question %>
+  </div>
+<% end %>
