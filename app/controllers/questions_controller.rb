@@ -42,8 +42,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.order(created_at: :desc).last(10)
-    @users = User.order(created_at: :desc).last(10)
+    @questions = Question.last(10).reverse
+    @users = User.last(10).reverse
   end
 
   def edit
