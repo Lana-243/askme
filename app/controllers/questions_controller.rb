@@ -13,15 +13,6 @@ class QuestionsController < ApplicationController
 
     @question.author = current_user
 
-    hashtags = has_hashtags(@question.body)
-
-    if hashtags.any?
-      hashtags.each do |hashtag|
-        single_hashtag = Hashtag.create(text: hashtag)
-        @question.hashtags << single_hashtag
-      end
-    end
-
     if check_captcha(@question) && @question.save
       redirect_to user_path(@question.user), notice: "New question has been created!"
     else
@@ -35,15 +26,6 @@ class QuestionsController < ApplicationController
     question_params = params.require(:question).permit(:body, :answer, :hashtag)
 
     @question.update(question_params)
-
-    hashtags = has_hashtags(@question.answer)
-
-    if hashtags.any?
-      hashtags.each do |hashtag|
-        single_hashtag = Hashtag.create(text: hashtag)
-        @question.hashtags << single_hashtag
-      end
-    end
 
     redirect_to user_path(@question.user), notice: "Question has been saved"
   end
@@ -84,9 +66,5 @@ class QuestionsController < ApplicationController
 
   def check_captcha(model)
     current_user.present? || verify_recaptcha(model: model)
-  end
-
-  def has_hashtags(text)
-    text.scan(/#[[:word:]-]+/)
   end
 end
