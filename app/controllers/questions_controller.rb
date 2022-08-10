@@ -44,6 +44,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.last(10).reverse
     @users = User.last(10).reverse
+    @hashtags = Hashtag.with_questions.all
   end
 
   def edit
