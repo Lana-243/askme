@@ -20,6 +20,6 @@ class Question < ApplicationRecord
   private
 
   def has_hashtags(text)
-    text.scan(/#[[:word:]-]+/)
+    text.scan(Hashtag::HASHTAG_FORMAT)
   end
 end
