@@ -1,11 +1,11 @@
 <% hidden_class = "text-pale" if question.hidden? %>
 <%= content_tag :p, class: ["mb-sm", hidden_class] do %>
-  <%= render_with_hashtags(question.body) %>
+  <%= sanitize render_with_hashtags(question.body) %>
 <% end %>
 
 <% if question.answer.present? %>
   <div class="mb-sm text-dark-red">
-    <%= render_with_hashtags(question.answer) %>
+    <%= sanitize render_with_hashtags(question.answer) %>
   </div>
 <% end %>
 
@@ -18,7 +18,7 @@
       <% if question.author.nil?  %>
         <%= 'Question created by Anonymous' %>
       <% else %>
-        <%= link_to "Question created by #{question.author.nickname}", user_path(question.author) %>
+        <%= link_to "Question created by #{sanitize question.author.nickname}", user_path(question.author) %>
       <% end %>
     </p>
   </div>
