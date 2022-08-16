@@ -1,6 +1,5 @@
 <% hidden_class = "text-pale" if question.hidden? %>
 <%= content_tag :p, class: ["mb-sm", hidden_class] do %>
-  <%= debug sanitize render_with_hashtags(question.body) %>
   <%= sanitize render_with_hashtags(question.body) %>
 <% end %>
 
