@@ -1,11 +1,11 @@
 <% hidden_class = "text-pale" if question.hidden? %>
 <%= content_tag :p, class: ["mb-sm", hidden_class] do %>
-  <%= sanitize render_with_hashtags(question.body) %>
+  <%= sanitize render_with_hashtags(question.body), tags: %w(a), attributes: %w(href) %>
 <% end %>
 
 <% if question.answer.present? %>
   <div class="mb-sm text-dark-red">
-    <%= sanitize render_with_hashtags(question.answer) %>
+    <%= sanitize render_with_hashtags(question.answer), tags: %w(a), attributes: %w(href) %>
   </div>
 <% end %>
 
