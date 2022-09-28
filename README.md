@@ -56,6 +56,19 @@ bundle install
 ```
 bundle exec rails db:migrate
 ```
+
+### Объединить стили
+
+```
+yarn install
+```
+```
+yarn build
+```
+```
+yarn build:css
+```
+
 ### Запустить приложение!
 
 ```
