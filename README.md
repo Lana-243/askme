@@ -1,24 +1,63 @@
-# README
+# AskMe
+Это сайт для вопросов и ответов, аналог 'AskFm'.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Как работает
 
-Things you may want to cover:
+Вы можете задавать вопросы другим пользователям и отвечать на вопросы других участников, заданных вам.
 
-* Ruby version
+Для анонимных вопросов регистрация не требуется
 
-* System dependencies
+Регистрация позволит:
 
-* Configuration
+* Получать вопросы от других пользователей
+* Отвечать от своего лица, а не анонимно
 
-* Database creation
+## Что требуется сделать, чтобы запустить приложение:
 
-* Database initialization
+### Склонировать репозиторий
 
-* How to run the test suite
+В терминале пройти в папку, куда хотите сохранить приложение и внесите код:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+git clone https://github.com/Lana-243/askme.git
+```
 
-* Deployment instructions
+```
+cd askme
+```
 
-* ...
+### Внести ключи reCAPTCHA
+
+Далее необходимо внести ключи для приложения.
+
+Так как в AskMe используется reCAPTCHA2, вам потребуется зарегистрироваться в сервисе и получить secret и public ключи.
+
+Ссылка на доки: https://cloud.google.com/recaptcha-enterprise/docs/create-key
+
+Полученные данные вносим в файл credentials (nano можете заменить на любой редактор, например, vim) и сохраняем.
+
+```
+EDITOR=nano rails credentials:edit
+```
+Добавляем в файл строки:
+```
+recaptcha_askme_public_key: "ваш ключ"
+recaptcha_askme_private_key: "ваш ключ"
+```
+
+### Подгрузить библиотеки
+
+```
+bundle install
+```
+
+### Прогнать миграции
+
+```
+bundle exec rails db:migrate
+```
+### Запустить приложение!
+
+```
+rails s
+```
