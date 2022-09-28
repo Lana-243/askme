@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user_params = params.require(:session)
@@ -10,9 +9,9 @@ class SessionsController < ApplicationController
     if user.present?
       session[:user_id] = user.id
 
-      redirect_to root_path, notice: "You are in!"
+      redirect_to root_path, notice: 'You are in!'
     else
-      flash.now[:alert] = "Wrong email or password"
+      flash.now[:alert] = 'Wrong email or password'
 
       render :new
     end
@@ -21,6 +20,6 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
 
-    redirect_to root_path, notice: "You signed out"
+    redirect_to root_path, notice: 'You signed out'
   end
 end

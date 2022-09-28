@@ -7,13 +7,13 @@ class User < ApplicationRecord
   COLOR_FORMAT = /\A#\h{3}{1,2}\z/
 
   has_many :questions, dependent: :delete_all
-  has_many :created_questions, class_name: "Question", foreign_key: "author_id"
+  has_many :created_questions, class_name: 'Question', foreign_key: 'author_id'
 
   validates :name, presence: true
   validates :nickname, presence: true, uniqueness: true,
-            length: { maximum: 40 }, format: { with: NICKNAME_FORMAT }
+                       length: { maximum: 40 }, format: { with: NICKNAME_FORMAT }
   validates :email, presence: true, uniqueness: true,
-            format: { with: EMAIL_FORMAT }
+                    format: { with: EMAIL_FORMAT }
   validates :header_color, format: { with: COLOR_FORMAT }
 
   before_validation :downcase_nickname

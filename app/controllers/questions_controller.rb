@@ -14,9 +14,9 @@ class QuestionsController < ApplicationController
     @question.author = current_user
 
     if check_captcha(@question) && @question.save
-      redirect_to user_path(@question.user), notice: "New question has been created!"
+      redirect_to user_path(@question.user), notice: 'New question has been created!'
     else
-      flash.now[:alert] = "You have incorrectly filled in the form"
+      flash.now[:alert] = 'You have incorrectly filled in the form'
 
       render :new
     end
@@ -27,14 +27,14 @@ class QuestionsController < ApplicationController
 
     @question.update(question_params)
 
-    redirect_to user_path(@question.user), notice: "Question has been saved"
+    redirect_to user_path(@question.user), notice: 'Question has been saved'
   end
 
   def destroy
     @user = @question.user
     @question.destroy
 
-    redirect_to user_path(@user), notice: "Question has been deleted"
+    redirect_to user_path(@user), notice: 'Question has been deleted'
   end
 
   def show
