@@ -36,4 +36,3 @@
 
 #ignore DS_Store
 /.DS_Store
-config/credentials.yml.enc
