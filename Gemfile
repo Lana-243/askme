@@ -16,6 +16,9 @@ gem 'bootsnap', require: false
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'where_exists'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'shoulda-matchers'
 
 group :production do
   gem 'pg'
